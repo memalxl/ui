@@ -1,0 +1,27 @@
+.my-button{
+    min-width: 150px;
+    height: 40px;
+    background-color: rgb(107, 124, 231);
+    border-radius: 8px;
+    border: none;
+    color:beige;
+
+    font-size: 18px;
+    transition: background 0.2s ease-in-out;
+}
+
+.my-button:hover {
+    cursor: pointer;
+    background-color: rgb(36, 40, 137);
+}
+.my-button--boredered{
+    background: none;
+    border: 1px solid rgb(247, 243, 246);
+    color: aliceblue;
+
+}
+.my-button--primary{
+    background: rgb(200, 57, 208);
+    border: none;
+    color: rgb(225, 227, 235);
+}
