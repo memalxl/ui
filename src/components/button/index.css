@@ -1,27 +1,53 @@
-.my-button{
+
+.my-button {
     min-width: 150px;
     height: 40px;
-    background-color: rgb(107, 124, 231);
+    background-color: rgb(233, 83, 208);
     border-radius: 8px;
     border: none;
-    color:beige;
-
     font-size: 18px;
     transition: background 0.2s ease-in-out;
 }
 
-.my-button:hover {
-    cursor: pointer;
-    background-color: rgb(36, 40, 137);
-}
-.my-button--boredered{
-    background: none;
-    border: 1px solid rgb(247, 243, 246);
-    color: aliceblue;
 
+.my-button--bordered {
+    background: none;
+    border: 1px solid rgb(193, 74, 163);
+    color: rgb(11, 43, 71);
 }
-.my-button--primary{
-    background: rgb(200, 57, 208);
+
+.my-button--bordered:hover {
+    background-color: rgb(187, 57, 111);
+}
+
+.my-button--primary {
+    background: rgb(187, 57, 111);
     border: none;
-    color: rgb(225, 227, 235);
+    color: rgb(222, 224, 233);
+}
+
+.my-button--primary:hover {
+    background-color: rgb(140, 6, 64);
+}
+
+
+.my-button--sm {
+    min-width: 100px;
+    height: 30px;
+    font-size: 14px;
+    padding: 5px 10px;
+}
+
+.my-button--md {
+    min-width: 150px;
+    height: 40px;
+    font-size: 18px;
+    padding: 10px 20px;
+}
+
+.my-button--lg {
+    min-width: 200px;
+    height: 50px;
+    font-size: 22px; 
+    padding: 15px 30px;
 }
