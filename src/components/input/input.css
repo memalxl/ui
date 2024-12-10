@@ -1,0 +1,39 @@
+
+.input-wrapper {
+    margin-bottom: 16px;
+    display: flex;
+    flex-direction: column;
+  }
+  
+
+  .input-label {
+    margin-bottom: 8px;
+    font-size: 14px;
+    color: #333;
+  }
+  
+  /* Поле ввода */
+  .input-field {
+    padding: 8px 12px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    transition: border-color 0.3s ease-in-out;
+  }
+  
+
+  .input-field:focus {
+    outline: none;
+    border-color: blue;
+  }
+  
+
+  .input-field.danger {
+    border-color: red;
+    color: red;
+  }
+  
+  .input-wrapper.danger .input-label {
+    color: red;
+  }
+  
