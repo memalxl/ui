@@ -1,0 +1,58 @@
+.tooltip-container {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    margin: 10px;
+  }
+  
+  .tooltip-text {
+    position: absolute;
+    visibility: hidden;
+    background-color: #007bff; /* Синий цвет */
+    color: white;
+    text-align: center;
+    border-radius: 5px;
+    padding: 5px 10px;
+    white-space: nowrap;
+    z-index: 1;
+    font-size: 14px;
+    font-weight: bold;
+    opacity: 0;
+    transition: opacity 0.2s;
+  }
+  
+  .tooltip-container:hover .tooltip-text {
+    visibility: visible;
+    opacity: 1;
+  }
+  
+  .tooltip-top {
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-bottom: 10px;
+  }
+  
+  .tooltip-bottom {
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-top: 10px;
+  }
+  
+  .tooltip-left {
+    top: 50%;
+    right: 100%;
+    transform: translateY(-50%);
+    margin-right: 10px;
+  }
+  
+  .tooltip-right {
+    top: 50%;
+    left: 100%;
+    transform: translateY(-50%);
+    margin-left: 10px;
+  }
+  
