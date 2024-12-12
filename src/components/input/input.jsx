@@ -11,16 +11,18 @@ const Input = ({
   danger 
 }) => {
   return (
-    <div className={`input-wrapper ${danger ? 'danger' : ''}`}>
-      {label && <label className="input-label">{label}</label>}
-      <input
-        type={type}
-        placeholder={placeholder}
-        defaultValue={defaultValue}
-        onChange={onChange}
-        disabled={disabled}
-        className={`input-field ${danger ? 'danger' : ''}`}
-      />
+    <div className="input-container">
+      <div className={`input-wrapper ${danger ? 'danger' : ''}`}>
+        {label && <label className="input-label">{label}</label>}
+        <input
+          type={type}
+          placeholder={placeholder}
+          defaultValue={defaultValue}
+          onChange={onChange}
+          disabled={disabled}
+          className={`input-field ${danger ? 'danger' : ''}`}
+        />
+      </div>
     </div>
   );
 };

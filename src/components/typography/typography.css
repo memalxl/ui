@@ -1,9 +1,12 @@
 p {
     margin: 1em 0; 
     line-height: 1.5; 
+    max-width: 700px; 
+    margin-right: auto; 
+    margin-right: 0;  
   }
   
-  /* Размеры текста */
+  
   .typography-sm {
     font-size: 0.875rem; 
   }

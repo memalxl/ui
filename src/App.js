@@ -3,6 +3,7 @@ import Input from "./components/input/input";
 import Typography from "./components/typography/typography";
 import Heading from "./components/heading/heading";
 import Tooltip from "./components/tooltip/tooltip";
+import Accordion from "./components/accordion/accordion";
 
 
 
@@ -101,6 +102,18 @@ function App() {
       <button>Bottom Tooltip</button>
     </Tooltip>
   </div>
+  <div>
+      <h1 style={{ textAlign: "center" }}>Accordion Component</h1>
+      <div className="accordion-container">
+        <Accordion title="Accordion 1" defaultOpen={true}>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+        </Accordion>
+
+        <Accordion title="Accordion 2">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+        </Accordion>
+      </div>
+    </div>
 </div>
     </div>
   );
