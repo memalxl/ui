@@ -1,30 +1,14 @@
 import React from 'react';
 import './input.css';
 
-const Input = ({ 
-  type = 'text', 
-  placeholder = '', 
-  defaultValue = '', 
-  onChange, 
-  disabled, 
-  label, 
-  danger 
-}) => {
-  return (
-    <div className="input-container">
-      <div className={`input-wrapper ${danger ? 'danger' : ''}`}>
-        {label && <label className="input-label">{label}</label>}
-        <input
-          type={type}
-          placeholder={placeholder}
-          defaultValue={defaultValue}
-          onChange={onChange}
-          disabled={disabled}
-          className={`input-field ${danger ? 'danger' : ''}`}
-        />
-      </div>
-    </div>
-  );
-};
+const Input = ({ value, onChange, placeholder }) => (
+  <input 
+    type="text" 
+    value={value} 
+    onChange={onChange} 
+    placeholder={placeholder} 
+    className="input"
+  />
+);
 
 export default Input;

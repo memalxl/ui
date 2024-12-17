@@ -1,22 +1,19 @@
-import React from "react";
-import PropTypes from "prop-types";
-import "./tooltip.css";
+import React, { useState } from 'react';
+import './tooltip.css';
 
-function Tooltip({ text, position, children }) { 
+const Tooltip = ({ text, children }) => {
+  const [show, setShow] = useState(false);
+
   return (
-    <div className="tooltip-container">
+    <span 
+      className="tooltip-wrapper" 
+      onMouseEnter={() => setShow(true)} 
+      onMouseLeave={() => setShow(false)}
+    >
       {children}
-      <div className={`tooltip-text tooltip-${position}`}>
-        {text}
-      </div>
-    </div>
+      {show && <span className="tooltip">{text}</span>}
+    </span>
   );
-}
-
-Tooltip.propTypes = {
-  text: PropTypes.string.isRequired,
-  position: PropTypes.oneOf(["top", "bottom", "left", "right"]).isRequired,
-  children: PropTypes.node.isRequired,
 };
 
 export default Tooltip;

@@ -1,122 +1,61 @@
-import Button from "./components/button";
-import Input from "./components/input/input"; 
-import Typography from "./components/typography/typography";
-import Heading from "./components/heading/heading";
-import Tooltip from "./components/tooltip/tooltip";
-import Accordion from "./components/accordion/accordion";
+import React, { useState, useEffect } from 'react';
+import Input from './components/input/input';
+import Button from './components/button/index';
+import Typography from './components/typography/typography';
+import Accordion from './components/accordion/accordion';
+import Tooltip from './components/tooltip/tooltip';
 
+import './index.css';
 
+const App = () => {
+  const [cryptos, setCryptos] = useState([]);
+  const [filteredCryptos, setFilteredCryptos] = useState([]);
+  const [search, setSearch] = useState('');
 
-function App() {
-  const handleInputChange = (e) => {
-    console.log("Input value:", e.target.value);
+  
+  const fetchData = async () => {
+    const response = await fetch('https://api.coinlore.net/api/tickers/');
+    const data = await response.json();
+    setCryptos(data.data);
+    setFilteredCryptos(data.data);
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+ 
+  const handleSearch = (e) => {
+    const query = e.target.value.toLowerCase();
+    setSearch(query);
+    setFilteredCryptos(cryptos.filter(crypto =>
+      crypto.name.toLowerCase().includes(query) || crypto.symbol.toLowerCase().includes(query)
+    ));
   };
 
   return (
-    <div>
-      <div>
-        <div>
-          <Button size="lg">WOWOWOW</Button>
-          <Button size="md" variant="bordered">CRUTO</Button>
-          <Button size="sm">MEMA</Button>
-        </div>
-        <div>
-          <Button size="lg">WOWOWOW</Button>
-          <Button size="md" variant="bordered">CRUTO</Button>
-          <Button size="sm">MEMA</Button>
-        </div>
-      </div>
-      <div>
-        <Input 
-          label="Name" 
-          placeholder="Enter your name" 
-          onChange={handleInputChange} 
-        />
-        <Input 
-          label="Name" 
-          placeholder="Enter your name" 
-          onChange={handleInputChange} 
-        />
-        <Input 
-          type="text" 
-          label="Name" 
-          placeholder="Enter your name" 
-          danger 
-          onChange={handleInputChange} 
-        />
-      </div>
-      <div>
-      <Typography textSize="sm">
-        SM. Our mission is to redefine the model of learning and re-engineer
-        its process by providing innovative administrative and instructional
-        technologies. Click here for our beliefs. If you are a school
-        administrator and would like to use ecourse.org for your classes,
-        please create school profiles. Instructors and students may signup
-        independent user account. For questions, contact us.
-      </Typography>
-      <Typography textSize="md" className="custom-class">
-        MD. Our mission is to redefine the model of learning and re-engineer
-        its process by providing innovative administrative and instructional
-        technologies. Click here for our beliefs. If you are a school
-        administrator and would like to use ecourse.org for your classes,
-        please create school profiles. Instructors and students may signup
-        independent user account. For questions, contact us.
-      </Typography>
-      <Typography textSize="lg">
-        LG. TOur mission is to redefine the model of learning and re-engineer
-        its process by providing innovative administrative and instructional
-        technologies. Click here for our beliefs. If you are a school
-        administrator and would like to use ecourse.org for your classes,
-        please create school profiles. Instructors and students may signup
-        independent user account. For questions, contact us.
-      </Typography>
-    </div>
-    <div>
-      <Heading level={1}>Heading 1</Heading>
-      <Heading level={2} className="custom-class">Heading 2</Heading>
-      <Heading level={3}>Heading 3</Heading>
-      <Heading level={4}>Heading 4</Heading>
-      <Heading level={5}>Heading 5</Heading>
-      <Heading level={6}>Heading 6</Heading>
-    </div>
-    <div>
-  <h1 style={{ textAlign: "center" }}>Tooltip Component</h1>
-  <div
-    style={{
-      display: "flex",
-      flexDirection: "column", 
-      alignItems: "center",   
-      gap: "20px",           
-    }}
-  >
-    <Tooltip text="Tooltip text" position="top">
-      <button>Top Tooltip</button>
-    </Tooltip>
-    <Tooltip text="Tooltip text" position="left">
-      <button>Left Tooltip</button>
-    </Tooltip>
-    <Tooltip text="Tooltip text" position="right">
-      <button>Right Tooltip</button>
-    </Tooltip>
-    <Tooltip text="Tooltip text" position="bottom">
-      <button>Bottom Tooltip</button>
-    </Tooltip>
-  </div>
-  <div>
-      <h1 style={{ textAlign: "center" }}>Accordion Component</h1>
-      <div className="accordion-container">
-        <Accordion title="Accordion 1" defaultOpen={true}>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+    <div className="app">
+      <Typography variant="h1" className="title">Cryptocurrency Prices</Typography>
+      <Button onClick={fetchData}>Update</Button>
+      <Input value={search} onChange={handleSearch} placeholder="Search" />
+      
+      {filteredCryptos.map(crypto => (
+        <Accordion key={crypto.id} title={crypto.name}>
+          <Typography><strong>Symbol:</strong> {crypto.symbol}</Typography>
+          <Typography><strong>Price USD:</strong> {crypto.price_usd}</Typography>
+          <Typography><strong>Price BTC:</strong> {crypto.price_btc}</Typography>
+          <Typography>
+            <Tooltip text="The market capitalization of a cryptocurrency is calculated by multiplying the number of coins in circulation by the current price">
+              <strong>Market Cap USD:</strong> {crypto.market_cap_usd}
+            </Tooltip>
+          </Typography>
+          <Typography style={{ color: crypto.percent_change_24h > 0 ? 'green' : 'red' }}>
+            <strong>Percent Change 24H:</strong> {crypto.percent_change_24h}%
+          </Typography>
         </Accordion>
-
-        <Accordion title="Accordion 2">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-        </Accordion>
-      </div>
-    </div>
-</div>
+      ))}
     </div>
   );
-}
+};
 
 export default App;
